@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React , {useState} from "react"
 import './App.css';
 
 function App() {
+
+  // build out a function to set the state so it's only called on inital render
+  function expensiveInitalState(v){
+    return v; 
+  }
+
+  const [count,setCount] = useState(()=> expensiveInitalState(10)); 
+  const [count2,setCount2] = useState(()=> expensiveInitalState(20)); 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => {
+        setCount(c => c+1)
+        setCount2(c => c+1)
+      }}>+</button>
+      <div>count 1: {count}</div>
+      <div>count 2: {count2}</div>
     </div>
   );
 }
